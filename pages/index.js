@@ -10,16 +10,22 @@ export default function Home() {
     <>
       <Head>
         <title>IDevtter</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <AppLayout>
         <section>
-          <img src="../logo.png" alt="logo" />
+          <img src="./rounded-idevtter.png" alt="logo" />
           <h1>IDevtter</h1>
           <h2>Talk about development with developers 👩‍💻👨‍💻</h2>
+          <div className="form-wrapper">
+            <form>
+              <input type="email" name="email" placeholder="Email" />
+              <input type="password" name="password" placeholder="Password" />
+            </form>
+          </div>
           <div>
             <Button>
-              <GitHub fill='#fff' width={32} height={32} />
+              <GitHub fill="#fff" width={32} height={32} />
               Login with Github
             </Button>
           </div>
@@ -48,6 +54,23 @@ export default function Home() {
           color: ${colors.secondary};
           font-size: 21px;
           margin: 0;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin: 0;
+        }
+
+        form input {
+          margin: .5rem 0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          padding: 1rem;
+          width: 20rem;
+          border-radius: 1rem;
+          outline: none;
+          font-size: 1rem;
         }
       `}</style>
     </>
