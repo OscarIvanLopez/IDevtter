@@ -1,11 +1,27 @@
+import { useState } from "react";
 import Head from "next/head";
+
 import { colors } from "../styles/theme";
 
 import AppLayout from "../components/AppLayout/index";
 import Button from "../components/Button/index";
 import GitHub from "../components/Icons/Github";
 
+import { loginWithGitHub } from "../firebase/client";
+
 export default function Home() {
+  const [user, setUser] = useState(null);
+
+  const handleClick = () => {
+    loginWithGitHub()
+      .then((user) => {
+        const { avatar, username, url } = user;
+        setUser(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <Head>
@@ -24,7 +40,7 @@ export default function Home() {
             </form>
           </div>
           <div>
-            <Button>
+            <Button onClick={handleClick}>
               <GitHub fill="#fff" width={32} height={32} />
               Login with Github
             </Button>
@@ -64,7 +80,7 @@ export default function Home() {
         }
 
         form input {
-          margin: .5rem 0;
+          margin: 0.5rem 0;
           border: 1px solid rgba(0, 0, 0, 0.1);
           padding: 1rem;
           width: 20rem;
